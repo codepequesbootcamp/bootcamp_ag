@@ -1,64 +1,52 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div className="flex flex-1 items-center justify-center bg-zinc-50 px-6 py-16 font-sans dark:bg-zinc-950">
+      <main className="flex w-full max-w-xl flex-col items-center gap-8 text-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 120 120"
+          width={140}
+          height={140}
+          role="img"
+          aria-label="Logo Aplicación de Notebooks"
+          className="rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-700"
+        >
+          <rect width="120" height="120" fill="#ffffff" />
+          <rect x="18" y="22" width="84" height="76" rx="6" fill="#0D9488" />
+          <rect x="24" y="28" width="34" height="64" fill="#ffffff" />
+          <rect x="62" y="28" width="34" height="64" fill="#ffffff" />
+          <line x1="30" y1="40" x2="52" y2="40" stroke="#0D9488" strokeWidth="2" />
+          <line x1="30" y1="50" x2="52" y2="50" stroke="#0D9488" strokeWidth="2" />
+          <line x1="30" y1="60" x2="52" y2="60" stroke="#0D9488" strokeWidth="2" />
+          <line x1="30" y1="70" x2="52" y2="70" stroke="#0D9488" strokeWidth="2" />
+          <line x1="68" y1="40" x2="90" y2="40" stroke="#0D9488" strokeWidth="2" />
+          <line x1="68" y1="50" x2="90" y2="50" stroke="#0D9488" strokeWidth="2" />
+          <line x1="68" y1="60" x2="90" y2="60" stroke="#0D9488" strokeWidth="2" />
+          <g transform="translate(78 48) rotate(-35)">
+            <rect x="-4" y="-22" width="8" height="36" rx="2" fill="#0F172A" />
+            <polygon points="-4,14 4,14 0,24" fill="#0F172A" />
+            <circle cx="0" cy="10" r="1.5" fill="#ffffff" />
+          </g>
+        </svg>
+
+        <h1 className="text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
+          Aplicación de Notebooks
+        </h1>
+
+        <p className="flex flex-col gap-3 text-lg font-medium sm:flex-row sm:gap-6">
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/notebooks"
+            className="text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            Lista de notebooks
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/notebooks/new"
+            className="text-blue-600 underline hover:text-blue-800 dark:text-blue-400"
           >
-            Documentation
+            Agregar notebook
           </a>
-        </div>
+        </p>
       </main>
     </div>
   );
