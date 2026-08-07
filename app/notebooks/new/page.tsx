@@ -1,4 +1,26 @@
+"use client";
+
+import { useState } from "react";
+
 export default function NewNotebookPage() {
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const res = await fetch("/api/notebook", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.get("name"),
+        pageCount: Number(formData.get("pageCount")) - 1 ,
+      }),
+    });
+    if (res.ok) {
+      setMessage("Guardado");
+    }
+  }
+
   return (
     <div className="mx-auto max-w-md p-8 font-sans">
       <nav className="mb-6 flex gap-4 text-sm font-medium">
@@ -18,13 +40,22 @@ export default function NewNotebookPage() {
       <h1 className="mb-6 text-2xl font-semibold text-black dark:text-zinc-50">
         Agregar notebook
       </h1>
-      <form className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-          Título
+          Nombre
           <input
             type="text"
-            name="title"
+            name="name"
             placeholder="Ejemplo: Mi notebook"
+            className="rounded border border-zinc-300 px-3 py-2 text-base text-black outline-none focus:border-blue-500 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50"
+          />
+        </label>
+        <label className="flex flex-col gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          Número de páginas
+          <input
+            type="number"
+            name="pageCount"
+            placeholder="Ejemplo: 10"
             className="rounded border border-zinc-300 px-3 py-2 text-base text-black outline-none focus:border-blue-500 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50"
           />
         </label>
@@ -35,6 +66,11 @@ export default function NewNotebookPage() {
           Guardar
         </button>
       </form>
+      {message ? (
+        <p className="mt-4 text-sm font-medium text-green-700 dark:text-green-400">
+          {message}
+        </p>
+      ) : null}
     </div>
   );
 }
