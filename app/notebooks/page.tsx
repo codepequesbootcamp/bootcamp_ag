@@ -2,14 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-type Notebook = {
-  id: number;
-  name: string;
-  pageCount: number;
-};
-
 export default function NotebooksPage() {
-  const [notebooks, setNotebooks] = useState<Notebook[]>([]);
+  const [notebooks, setNotebooks] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,7 +36,7 @@ export default function NotebooksPage() {
         </a>
       </nav>
       <h1 className="mb-6 text-2xl font-semibold text-black dark:text-zinc-50">
-        Lista de notebooks
+        Lista de notebooks bla bla
       </h1>
 
       {loading ? (

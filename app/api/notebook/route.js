@@ -13,8 +13,6 @@ export async function GET() {
 
 export async function POST(request) {
   const body = await request.json();
-  body.name = body.name + " (prueba)";
-  body.pageCount = body.name.length;
   const notebook = await prisma.notebook.create({
     data: body,
   });

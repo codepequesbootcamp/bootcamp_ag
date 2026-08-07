@@ -3,21 +3,21 @@
 import { useState } from "react";
 
 export default function NewNotebookPage() {
-  const [message, setMessage] = useState("");
+  const [mensaje, setMensaje] = useState("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
     const res = await fetch("/api/notebook", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: formData.get("name"),
-        pageCount: Number(formData.get("pageCount")) - 1 ,
+        pageCount: Number(formData.get("pageCount")),
       }),
     });
     if (res.ok) {
-      setMessage("Guardado");
+      setMensaje("Guardado");
     }
   }
 
@@ -66,11 +66,11 @@ export default function NewNotebookPage() {
           Guardar
         </button>
       </form>
-      {message ? (
+      {mensaje && (
         <p className="mt-4 text-sm font-medium text-green-700 dark:text-green-400">
-          {message}
+          {mensaje}
         </p>
-      ) : null}
+      )}
     </div>
   );
 }
