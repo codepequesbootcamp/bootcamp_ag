@@ -19,6 +19,13 @@ export default function NotebooksPage() {
       });
   }, []);
 
+  async function handleDelete(id) {
+    const res = await fetch(`/api/notebook/${id}`, { method: "DELETE" });
+    if (res.ok) {
+      setNotebooks((prev) => prev.filter((notebook) => notebook.id !== id));
+    }
+  }
+
   return (
     <div className="mx-auto max-w-md p-8 font-sans">
       <nav className="mb-6 flex gap-4 text-sm font-medium">
@@ -48,9 +55,26 @@ export default function NotebooksPage() {
           {notebooks.map((notebook) => (
             <li
               key={notebook.id}
-              className="rounded border border-zinc-300 px-4 py-3 text-zinc-800 dark:border-zinc-600 dark:text-zinc-200"
+              className="flex items-center justify-between gap-3 rounded border border-zinc-300 px-4 py-3 text-zinc-800 dark:border-zinc-600 dark:text-zinc-200"
             >
-              {notebook.name} ({notebook.pageCount} páginas)
+              <span>
+                {notebook.name} ({notebook.pageCount} páginas)
+              </span>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`/notebooks/${notebook.id}/edit`}
+                  className="rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700"
+                >
+                  Editar
+                </a>
+                <button
+                  type="button"
+                  onClick={() => handleDelete(notebook.id)}
+                  className="rounded bg-red-600 px-3 py-1 text-sm font-medium text-white hover:bg-red-700"
+                >
+                  Eliminar
+                </button>
+              </div>
             </li>
           ))}
         </ul>
