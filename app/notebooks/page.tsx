@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+type Notebook = {
+  id: number;
+  name: string;
+  pageCount: number;
+};
+
 export default function NotebooksPage() {
-  const [notebooks, setNotebooks] = useState([]);
+  const [notebooks, setNotebooks] = useState<Notebook[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,7 +25,7 @@ export default function NotebooksPage() {
       });
   }, []);
 
-  async function handleDelete(id) {
+  async function handleDelete(id: number) {
     const res = await fetch(`/api/notebook/${id}`, { method: "DELETE" });
     if (res.ok) {
       setNotebooks((prev) => prev.filter((notebook) => notebook.id !== id));

@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function NewNotebookPage() {
   const [mensaje, setMensaje] = useState("");
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
     const res = await fetch("/api/notebook", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

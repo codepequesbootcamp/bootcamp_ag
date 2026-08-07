@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useParams } from "next/navigation";
 
 export default function EditNotebookPage() {
@@ -24,7 +24,7 @@ export default function EditNotebookPage() {
       });
   }, [id]);
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const res = await fetch(`/api/notebook/${id}`, {
       method: "PUT",
